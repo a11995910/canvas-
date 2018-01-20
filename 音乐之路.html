@@ -28,10 +28,14 @@
 		
 	</script>
 	<script type="text/javascript">
-	window.onload = function(){
 		var can = document.getElementById('canvas');
 		var ctx = can.getContext('2d'); //画笔
 		var music = document.getElementById('music');//音乐
+		ctx.beginPath();
+		ctx.font = '25px Arial';
+		ctx.fillStyle = 'white';
+		ctx.fillText('加载中请稍后',27,500);
+	window.onload = function(){
 		var blockarr=[];//小块的数组
 		var luarr = [];//小路的数组
 		var songarr = [6,9,10,9,9,9,9,9,10,5,9,5,5,5,9,9,4,5,5,5/*20*/,4,4,2,2,2,2,5,1,1,1/*30*/,3,5,5,5,5,5,5,5,5,5/*40*/,5,2,2,2,2,2,2,2,2,2/*50*/,4,4,2,2,2,2,5,2,3,3/*60*/,2,2,2,2,2,4,4,4,4,4/*70*/,4,4,4,4,5,5,5,5,5,5,10,10];//歌曲块数组
@@ -204,7 +208,7 @@
 			speed.x=-speed.x;//点击事件该变速度方向
 			ctx.rect(145,325,100,100);//规定一个矩形区域，也就是方块区域\n
 			if(gameopen==1){//游戏开关
-				speed={//小块的方向速度，防止点击事件开始游戏时不是初始值，这里再次初始化
+				speed={//小块的方向速度 防止点击事件开始游戏时不是初始值，这里再次初始化
 					x:-4,
 					y:4
 				}
