@@ -196,30 +196,11 @@
 				setTimeout(function(){var myreq = requestAnimationFrame(creatall);},8);
 			}
 		}
-		//游戏开始界面
-		var show = new Lu(0);
-		luarr.push(show);
-		show.move();
-		var show2 = new Block();
-		blockarr.push(show2);
-		show2.move();
-		ctx.beginPath();
-		ctx.font = '25px Arial';
-		ctx.fillStyle = 'white';
-		ctx.fillText('音量放大，会有很好的效果哦',27,500);
-		var imgg = new Image();
-		imgg.src = 'star.png';
-		imgg.onload = function() {//图片加载完后才能用
-			ctx.beginPath();
-			ctx.drawImage(imgg, 44, 55, 292, 147);
-		}
-		var time = 0;
 		can.addEventListener('click',function(){//添加点击事件
 			var e = event||window.event;
 //			console.log(e.offsetX,e.offsetY);
 			speed.x=-speed.x;//点击事件该变速度方向
 			ctx.rect(145,325,100,100);//规定一个矩形区域，也就是方块区域\n
-//			console.log(time++);
 			if(gameopen==1){//游戏开关
 				speed={//小块的方向速度，防止点击事件开始游戏时不是初始值，这里再次初始化
 					x:-4,
@@ -232,7 +213,22 @@
 					gameopen = 0;
 				}	
 			}else if(gameopen==2){
-				history.go(0);
+				//重新开始游戏
+				//数据初始化
+				blockarr=[];//小块的数组
+				luarr = [];//小路的数组
+				songarr = [6,9,10,9,9,9,9,9,10,5,9,5,5,5,9,9,4,5,5,5/*20*/,4,4,2,2,2,2,5,1,1,1/*30*/,3,5,5,5,5,5,5,5,5,5/*40*/,5,2,2,2,2,2,2,2,2,2/*50*/,4,4,2,2,2,2,5,2,3,3/*60*/,2,2,2,2,2,4,4,4,4,4/*70*/,4,4,4,4,5,5,5,5,5,5,10,10];//歌曲块数组
+				speed={//小块的方向速度
+					x:-4,
+					y:4
+				}
+				lux=145;//小路类的最后一个类的坐标
+				luy=370;
+				gameopen  = 1;//游戏开关，防止多次点击叠加计时
+				bigluwhere = 1;//每个大路结束后新的大路的方向是和老的相反，所以可以直接置负
+				open = 1;
+				start();
+				
 			}
 		},false);
 		//碰撞检测
@@ -262,6 +258,27 @@
 			ctx.fillText('GAMEOVER',35,200);
 			gameopen = 2;
 		}
+		function start(){
+		//游戏开始界面
+		ctx.clearRect(0,0,800,800);
+		var show = new Lu(0);
+		luarr.push(show);
+		show.move();
+		var show2 = new Block();
+		blockarr.push(show2);
+		show2.move();
+		ctx.beginPath();
+		ctx.font = '25px Arial';
+		ctx.fillStyle = 'white';
+		ctx.fillText('音量放大，会有很好的效果哦',27,500);
+		var imgg = new Image();
+		imgg.src = 'star.png';
+		imgg.onload = function() {//图片加载完后才能用
+			ctx.beginPath();
+			ctx.drawImage(imgg, 44, 55, 292, 147);
+		}
+		}
+		start();
 	}
 	</script>
 </html>
