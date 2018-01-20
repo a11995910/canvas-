@@ -22,7 +22,7 @@
 	<body>
 		
 		<canvas id="canvas" width="380" height="680" preload>123</canvas>
-		<audio src="ThePiano.mp3" ></audio>
+		<audio src="ThePiano.mp3" id="music"></audio>
 	</body>
 	<script type="text/javascript" src="jquery-3.2.1.min.js">
 		
@@ -31,6 +31,7 @@
 	window.onload = function(){
 		var can = document.getElementById('canvas');
 		var ctx = can.getContext('2d'); //画笔
+		var music = document.getElementById('music');//音乐
 		var blockarr=[];//小块的数组
 		var luarr = [];//小路的数组
 		var songarr = [6,9,10,9,9,9,9,9,10,5,9,5,5,5,9,9,4,5,5,5/*20*/,4,4,2,2,2,2,5,1,1,1/*30*/,3,5,5,5,5,5,5,5,5,5/*40*/,5,2,2,2,2,2,2,2,2,2/*50*/,4,4,2,2,2,2,5,2,3,3/*60*/,2,2,2,2,2,4,4,4,4,4/*70*/,4,4,4,4,5,5,5,5,5,5,10,10];//歌曲块数组
@@ -209,7 +210,7 @@
 				}
 				if(ctx.isPointInPath(e.offsetX,e.offsetY)){//如果点击位置坐标在规定区域时，触发req
 					myreq =requestAnimationFrame(creatall);
-					 $('audio')[0].play();
+					 music.play();
 					
 					gameopen = 0;
 				}	
@@ -243,8 +244,8 @@
 		//游戏结束
 		function over(){
 			open=0;
-			 $('audio')[0].pause();
-			 $('audio')[0].currentTime=0;
+			 music.pause();
+			 music.currentTime=0;
 			ctx.beginPath();
 			ctx.fillStyle = 'rgba(147,147,147,0.3)';
 			ctx.fillRect(0, 0, 380, 680);
@@ -253,12 +254,12 @@
 			img.onload = function(){//图片加载完后才能用
 				ctx.beginPath();
 				ctx.drawImage(img,40,500);
+				ctx.beginPath();
+				ctx.font = '55px Arial';
+				ctx.fillStyle = 'white';
+				ctx.fillText('GAMEOVER',35,200);
+				gameopen = 2;
 			}
-			ctx.beginPath();
-			ctx.font = '55px Arial';
-			ctx.fillStyle = 'white';
-			ctx.fillText('GAMEOVER',35,200);
-			gameopen = 2;
 		}
 		function start(){
 		//游戏开始界面
