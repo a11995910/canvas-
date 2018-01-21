@@ -202,8 +202,8 @@
 				setTimeout(function(){var myreq = requestAnimationFrame(creatall);},8);
 			}
 		}
-		can.addEventListener('click',function(){//添加点击事件
-			var e = event||window.event;
+		can.addEventListener('click',function(e){//添加点击事件
+			var e = e||window.event;
 //			console.log(e.offsetX,e.offsetY);
 			speed.x=-speed.x;//点击事件该变速度方向
 			ctx.rect(145,325,100,100);//规定一个矩形区域，也就是方块区域\n
