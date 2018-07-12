@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>音乐之路</title>
 	</head>
 	<style type="text/css">
@@ -20,12 +21,12 @@
 		}
 	</style>
 	<body>
-		
+
 		<canvas id="canvas" width="380" height="680" preload>123</canvas>
 		<audio src="小瑞-PDD洪荒之力.mp3" id="music"></audio>
 	</body>
 	<script type="text/javascript" src="jquery-3.2.1.min.js">
-		
+
 	</script>
 	<script type="text/javascript">
 		var can = document.getElementById('canvas');
@@ -106,7 +107,7 @@
 				var b=this.y-this.x;
 				if(b>169&&b<=177){
 					over();
-				}                                                        
+				}
 			}else if(this.where==1){
 				var b=this.y+this.x;
 				if(b>=559&&b<=567){
@@ -165,14 +166,14 @@
 			var newblock = new Block();
 			blockarr.push(newblock);
 		}
-		
+
 		//绘制主函数
 		function creatall(){
 			//不断获取新的block，并且全部画出
 			ctx.clearRect(0,0,800,800);
 			creatblock();
-			 
-			
+
+
 			for (var i=luarr.length-1;i>0;i--) {//路快移动
 				luarr[i].move();
 			}
@@ -208,9 +209,9 @@
 				if(ctx.isPointInPath(e.offsetX,e.offsetY)){//如果点击位置坐标在规定区域时，触发req
 					myreq =requestAnimationFrame(creatall);
 					 music.play();
-					
+
 					gameopen = 0;
-				}	
+				}
 			}else if(gameopen==2){
 				//重新开始游戏
 				//数据初始化
@@ -228,7 +229,7 @@
 				bigluwhere = 1;//每个大路结束后新的大路的方向是和老的相反，所以可以直接置负
 				open = 1;
 				start();
-				
+
 			}
 		},false);
 		//碰撞检测
